@@ -6,7 +6,7 @@
 
 ## 📌 Project Summary
 
-This project implements a full Business Intelligence lifecycle — from raw data ingestion to executive-level reporting — using industry-standard Microsoft data stack tools. It was designed to simulate a real-world BI engineering workflow, covering data warehouse architecture, ETL development, multidimensional cube design, and interactive Power BI reporting.
+This project implements a full Business Intelligence lifecycle from raw data ingestion to executive-level reporting using industry-standard Microsoft data stack tools. It was designed to simulate a real world BI engineering workflow, covering data warehouse architecture, ETL development, multidimensional cube design, and interactive Power BI reporting.
 
 **Key outcomes:**
 - Designed and implemented a Snowflake schema data warehouse in SQL Server
@@ -80,7 +80,7 @@ ETL workflows were built using **SQL Server Integration Services (SSIS)** in SSD
 
 ## 📊 OLAP Cube (SSAS)
 
-An **SSAS multidimensional cube** was built on top of the data warehouse, enabling high-performance analytical queries. The cube supports the following OLAP operations demonstrated via Microsoft Excel:
+An **SSAS multidimensional cube** was built on top of the data warehouse, enabling high performance analytical queries. The cube supports the following OLAP operations demonstrated via Microsoft Excel:
 
 | Operation | Description |
 |-----------|-------------|
@@ -135,28 +135,51 @@ Four interactive reports were developed in Power BI, connected to the SSAS cube:
 
 ---
 
-## 📁 Repository Structure
+### Folder Structure
+DWBI-Instacart-DataWarehouse-and-BI-Project
 
-```
-├── database/
-│   ├── schema/          # DDL scripts for all tables
-│   └── stored_procedures/
-├── etl/
-│   └── ssis/            # SSIS packages (.dtsx)
-├── olap/
-│   └── ssas/            # SSAS project files
-├── reports/
-│   └── powerbi/         # Power BI report files (.pbix)
-├── data/
-│   ├── Aisles.csv
-│   ├── Departments.txt
-│   ├── Products.csv
-│   └── Ratings.txt
+├── SSIS_ETL
+│   ├── Extract_To_Staging.dtsx
+│   ├── Load_DW.dtsx
+│   ├── Update_Accumulating_Fact.dtsx
+│   └── Screenshots
+│
+├── SSAS_Cube
+│   ├── Cube_Instacart_DW.cube
+│   ├── DSV_Instacart_DW.dsv
+│   ├── DS_Instacart_DW.ds
+│   ├── DimCustomer.dim
+│   ├── DimProduct.dim
+│   ├── DimDate.dim
+│   ├── DimDepartment.dim
+│   ├── DimAisle.dim
+│   └── Instacart_SSAS.dwproj
+│
+├── Excel_OLAP
+│   └── colab Demonstration.xlsx
+│
+├── PowerBI
+│   └── PowerBi Report.pbix
+│
+├── Documentation
+│   ├── Assignment_1_Report.pdf
+│   └── Assignment_2_Report.pdf
+│
+├── Screenshots
+│   ├── DW_Schema.png
+│   ├── ETL_Process.png
+│   ├── Cube_Design.png
+│   ├── Excel_Rollup.png
+│   ├── Excel_DrillDown.png
+│   ├── Excel_Slice.png
+│   ├── Excel_Dice.png
+│   ├── Excel_Pivot.png
+│   ├── PowerBI_Report1.png
+│   ├── PowerBI_Report2.png
+│   ├── PowerBI_Report3.png
+│   └── PowerBI_Report4.png
+│
 └── README.md
-```
 
 ---
 
-## 📬 Contact
-
-Feel free to reach out if you have any questions about the implementation or want to discuss the design decisions behind the warehouse architecture.
