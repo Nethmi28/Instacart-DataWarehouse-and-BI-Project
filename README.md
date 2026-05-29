@@ -1,4 +1,4 @@
-# 🛒 End-to-End Business Intelligence Pipeline  Instacart Grocery Dataset
+# 🛒 End to End Business Intelligence Pipeline  Instacart Grocery Dataset
 
 > A complete data warehousing and analytics solution built on the Instacart Online Grocery Basket Dataset, demonstrating proficiency in dimensional modelling, ETL pipelines, OLAP analysis, and interactive dashboards.
 
