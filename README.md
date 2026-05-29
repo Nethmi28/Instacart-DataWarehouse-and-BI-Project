@@ -1,4 +1,4 @@
-# 🛒 End-to-End Business Intelligence Pipeline — Instacart Grocery Dataset
+# 🛒 End to End Business Intelligence Pipeline  Instacart Grocery Dataset
 
 > A complete data warehousing and analytics solution built on the Instacart Online Grocery Basket Dataset, demonstrating proficiency in dimensional modelling, ETL pipelines, OLAP analysis, and interactive dashboards.
 
@@ -6,14 +6,14 @@
 
 ## 📌 Project Summary
 
-This project implements a full Business Intelligence lifecycle — from raw data ingestion to executive-level reporting — using industry-standard Microsoft data stack tools. It was designed to simulate a real-world BI engineering workflow, covering data warehouse architecture, ETL development, multidimensional cube design, and interactive Power BI reporting.
+This project implements a full Business Intelligence lifecycle from raw data ingestion to executive level reporting using industry standard Microsoft data stack tools. It was designed to simulate a real world BI engineering workflow, covering data warehouse architecture, ETL development, multidimensional cube design, and interactive Power BI reporting.
 
 **Key outcomes:**
 - Designed and implemented a Snowflake schema data warehouse in SQL Server
-- Built automated ETL pipelines using SSIS to load and transform multi-source data
+- Built automated ETL pipelines using SSIS to load and transform multi source data
 - Developed an SSAS OLAP cube enabling multidimensional analysis
 - Demonstrated five core OLAP operations: Roll Up, Drill Down, Slice, Dice, and Pivot
-- Delivered four Power BI reports with advanced interactivity and drill-through capability
+- Delivered four Power BI reports with advanced interactivity and drill through capability
 
 ---
 
@@ -58,12 +58,12 @@ The warehouse follows a **Snowflake Schema**, chosen to reduce data redundancy a
 
 | Table | Type | Description |
 |-------|------|-------------|
-| `FactOrder` | Fact | Central fact table capturing order-level transactions |
+| `FactOrder` | Fact | Central fact table capturing order level transactions |
 | `DimCustomer` | Dimension | Customer demographics from Mockaroo |
 | `DimProduct` | Dimension | Product catalogue linked to aisle and department |
-| `DimDate` | Dimension | Calendar date attributes for time-series analysis |
+| `DimDate` | Dimension | Calendar date attributes for time series analysis |
 | `DimDepartment` | Dimension | Store department hierarchy |
-| `DimAisle` | Dimension | Aisle-level product grouping |
+| `DimAisle` | Dimension | Aisle level product grouping |
 | `DimRating` | Dimension | Product rating classifications |
 
 ---
@@ -80,14 +80,14 @@ ETL workflows were built using **SQL Server Integration Services (SSIS)** in SSD
 
 ## 📊 OLAP Cube (SSAS)
 
-An **SSAS multidimensional cube** was built on top of the data warehouse, enabling high-performance analytical queries. The cube supports the following OLAP operations demonstrated via Microsoft Excel:
+An **SSAS multidimensional cube** was built on top of the data warehouse, enabling high performance analytical queries. The cube supports the following OLAP operations demonstrated via Microsoft Excel:
 
 | Operation | Description |
 |-----------|-------------|
 | **Roll Up** | Aggregating from product level → aisle → department |
 | **Drill Down** | Decomposing department totals down to individual product performance |
 | **Slice** | Filtering the cube by a single dimension value (e.g., specific department) |
-| **Dice** | Multi-dimensional filtering across two or more dimension values |
+| **Dice** | Multi dimensional filtering across two or more dimension values |
 | **Pivot** | Rotating axes to reframe data perspective |
 
 ---
@@ -98,10 +98,10 @@ Four interactive reports were developed in Power BI, connected to the SSAS cube:
 
 | Report | Description |
 |--------|-------------|
-| **Matrix Visual Report** | Tabular cross-dimensional view of order metrics by product hierarchy |
-| **Slicers with Cascading Filters** | Interactive slicers with parent-child filter dependencies across dimensions |
-| **Drill Down Report** | Hierarchical visual allowing in-chart navigation from department → aisle → product |
-| **Drill Through Report** | Page-level drill-through enabling contextual deep-dives on selected data points |
+| **Matrix Visual Report** | Tabular cross dimensional view of order metrics by product hierarchy |
+| **Slicers with Cascading Filters** | Interactive slicers with parent child filter dependencies across dimensions |
+| **Drill Down Report** | Hierarchical visual allowing in chart navigation from department → aisle → product |
+| **Drill Through Report** | Page level drill through enabling contextual deep dives on selected data points |
 
 ---
 
@@ -118,38 +118,20 @@ Four interactive reports were developed in Power BI, connected to the SSAS cube:
 
 ---
 
-## 🚀 Getting Started
 
-### Prerequisites
-- SQL Server 2019+ with SSAS and SSIS components installed
-- SQL Server Data Tools (SSDT) for Visual Studio
-- Power BI Desktop
-- Microsoft Excel with Analysis Services add-in
-
-### Setup Steps
-1. Restore the SQL Server database from the provided `.bak` file
-2. Open the SSIS project in SSDT and update connection strings to your environment
-3. Execute ETL packages in dependency order: dimensions first, then fact table
-4. Deploy the SSAS project and process the cube
-5. Open the Power BI `.pbix` file and refresh the data source connection
-
----
 
 ## 📁 Repository Structure
 
 ```
 DWBI-Instacart-DataWarehouse-and-BI-Project
 │
-├── 01_Database
-│   └── InstaCart_Grocery_Basket_DW.bak
-│
-├── 02_SSIS_ETL
+├── SSIS_ETL
 │   ├── Extract_To_Staging.dtsx
 │   ├── Load_DW.dtsx
 │   ├── Update_Accumulating_Fact.dtsx
 │   └── Screenshots/
 │
-├── 03_SSAS_Cube
+├── SSAS_Cube
 │   ├── Cube_Instacart_DW.cube
 │   ├── DSV_Instacart_DW.dsv
 │   ├── DS_Instacart_DW.ds
@@ -160,17 +142,17 @@ DWBI-Instacart-DataWarehouse-and-BI-Project
 │   ├── DimAisle.dim
 │   └── Instacart_SSAS.dwproj
 │
-├── 04_Excel_OLAP
+├── Excel_OLAP
 │   └── colab Demonstration.xlsx
 │
-├── 05_PowerBI
+├── PowerBI
 │   └── PowerBi Report.pbix
 │
-├── 06_Documentation
+├── Documentation
 │   ├── Assignment_1_Report.pdf
 │   └── Assignment_2_Report.pdf
 │
-├── 07_Screenshots
+├── Screenshots
 │   ├── DW_Schema.png
 │   ├── ETL_Process.png
 │   ├── Cube_Design.png
