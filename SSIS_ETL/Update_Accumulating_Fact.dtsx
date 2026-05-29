@@ -1,0 +1,1360 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/30/2026 12:30:16 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-V39V1CJ"
+  DTS:CreatorName="DESKTOP-V39V1CJ\Nethmi"
+  DTS:DTSID="{1931E6A2-D558-4218-BEF8-F4D6D49C5721}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Update_Accumulating_Fact"
+  DTS:PackageType="5"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{42291120-74E5-49C5-B111-FCBDE511B75D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{C39101D7-6902-4C09-8268-88DE20C0F9B9}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="D:\InstaCart  Grocery Basket\upating_table.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="﻿order_id"
+              DTS:DTSID="{2685A120-80C5-41F4-A1F9-BF7019030DEC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="accm_txn_complete_time"
+              DTS:DTSID="{2E99EF74-2378-42D9-8EF1-9E8EA44DB110}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\updating factOrder completion"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{FF698D52-D194-497D-93EB-D61A1A185AAD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="updating factOrder completion"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\updating factOrder completion\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\updating factOrder completion\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Data Conversion.Inputs[Data Conversion Input].Columns[﻿order_id]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="﻿order_id"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[﻿order_id]" />
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Data Conversion.Inputs[Data Conversion Input].Columns[accm_txn_complete_time]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="accm_txn_complete_time"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\updating factOrder completion\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ﻿order_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ﻿order_id]"
+                      name="Copy of ﻿order_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[﻿order_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of accm_txn_complete_time]"
+                      name="Copy of accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\updating factOrder completion\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\updating factOrder completion\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\updating factOrder completion\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Derived Column.Inputs[Derived Column Input].Columns[accm_txn_create_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_create_time"
+                      lineageId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]" />
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Derived Column.Inputs[Derived Column Input].Columns[accm_txn_complete_time_ts]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time_ts"
+                      lineageId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time_ts]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\updating factOrder completion\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Output].Columns[txn_process_time_hours]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)[DATEDIFF]("Hour",#{Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]},#{Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time_ts]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)DATEDIFF("Hour",accm_txn_create_time,accm_txn_complete_time_ts)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\updating factOrder completion\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\updating factOrder completion\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\updating factOrder completion\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[﻿order_id]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[﻿order_id]"
+                      length="50"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[﻿order_id]"
+                      name="﻿order_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[accm_txn_complete_time]"
+                      length="50"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[﻿order_id]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="﻿order_id" />
+                    <externalMetadataColumn
+                      refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[accm_txn_complete_time]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="accm_txn_complete_time" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\updating factOrder completion\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\updating factOrder completion\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Merge Join.Inputs[Merge Join Left Input].Columns[Copy of ﻿order_id]"
+                      cachedDataType="i4"
+                      cachedName="Copy of ﻿order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[Copy of ﻿order_id]" />
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Merge Join.Inputs[Merge Join Left Input].Columns[Copy of accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Copy of accm_txn_complete_time"
+                      lineageId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[Copy of accm_txn_complete_time]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\updating factOrder completion\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Merge Join.Inputs[Merge Join Right Input].Columns[order_id]"
+                      cachedDataType="i4"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\updating factOrder completion\Sort 1.Outputs[Sort Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Merge Join.Inputs[Merge Join Right Input].Columns[accm_txn_create_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_create_time"
+                      lineageId="Package\updating factOrder completion\Sort 1.Outputs[Sort Output].Columns[accm_txn_create_time]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[﻿order_id]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[﻿order_id]"
+                      name="﻿order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\updating factOrder completion\Merge Join.Inputs[Merge Join Left Input].Columns[Copy of ﻿order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\updating factOrder completion\Merge Join.Inputs[Merge Join Right Input].Columns[accm_txn_create_time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time_ts]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time_ts]"
+                      name="accm_txn_complete_time_ts">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\updating factOrder completion\Merge Join.Inputs[Merge Join Left Input].Columns[Copy of accm_txn_complete_time]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\updating factOrder completion\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC dbo.usp_UpdateTxnProcessingTime ?, ?, ?, ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\updating factOrder completion\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{B6815DBD-0339-44C6-B143-C8D1449DA08C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-V39V1CJ_MSSQLSERVER2.InstaCart _Grocery_Basket_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].Columns[﻿order_id]"
+                      cachedDataType="i4"
+                      cachedName="﻿order_id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@order_id]"
+                      lineageId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[﻿order_id]" />
+                    <inputColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].Columns[accm_txn_create_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_create_time"
+                      externalMetadataColumnId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@accm_txn_create_time]"
+                      lineageId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]" />
+                    <inputColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].Columns[accm_txn_complete_time_ts]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time_ts"
+                      externalMetadataColumnId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@accm_txn_complete_time]"
+                      lineageId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time_ts]" />
+                    <inputColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].Columns[txn_process_time_hours]"
+                      cachedDataType="i4"
+                      cachedName="txn_process_time_hours"
+                      externalMetadataColumnId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@txn_process_time_hours]"
+                      lineageId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Output].Columns[txn_process_time_hours]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@order_id]"
+                      dataType="i4"
+                      name="@order_id">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      name="@accm_txn_create_time">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="@accm_txn_complete_time">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@txn_process_time_hours]"
+                      dataType="i4"
+                      name="@txn_process_time_hours">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\updating factOrder completion\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\updating factOrder completion\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\updating factOrder completion\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    order_id,
+    accm_txn_create_time
+
+FROM dbo.FactOrder;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\updating factOrder completion\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{B6815DBD-0339-44C6-B143-C8D1449DA08C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-V39V1CJ_MSSQLSERVER2.InstaCart _Grocery_Basket_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      lineageId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      lineageId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      dataType="i4"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_create_time" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\updating factOrder completion\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\updating factOrder completion\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Sort.Inputs[Sort Input].Columns[﻿order_id]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="﻿order_id"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[﻿order_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Sort.Inputs[Sort Input].Columns[accm_txn_complete_time]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="accm_txn_complete_time"
+                      lineageId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Sort.Inputs[Sort Input].Columns[Copy of ﻿order_id]"
+                      cachedDataType="i4"
+                      cachedName="Copy of ﻿order_id"
+                      lineageId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ﻿order_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Sort.Inputs[Sort Input].Columns[Copy of accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Copy of accm_txn_complete_time"
+                      lineageId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of accm_txn_complete_time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\updating factOrder completion\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[﻿order_id]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[﻿order_id]"
+                      name="﻿order_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[﻿order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[accm_txn_complete_time]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[Copy of ﻿order_id]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[Copy of ﻿order_id]"
+                      name="Copy of ﻿order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ﻿order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[Copy of accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\updating factOrder completion\Sort.Outputs[Sort Output].Columns[Copy of accm_txn_complete_time]"
+                      name="Copy of accm_txn_complete_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of accm_txn_complete_time]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\updating factOrder completion\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\updating factOrder completion\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Sort 1.Inputs[Sort Input].Columns[order_id]"
+                      cachedDataType="i4"
+                      cachedName="order_id"
+                      lineageId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\updating factOrder completion\Sort 1.Inputs[Sort Input].Columns[accm_txn_create_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_create_time"
+                      lineageId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\updating factOrder completion\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Sort 1.Outputs[Sort Output].Columns[order_id]"
+                      dataType="i4"
+                      lineageId="Package\updating factOrder completion\Sort 1.Outputs[Sort Output].Columns[order_id]"
+                      name="order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\updating factOrder completion\Sort 1.Outputs[Sort Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\updating factOrder completion\Sort 1.Outputs[Sort Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\updating factOrder completion.Paths[Data Conversion Output]"
+              endId="Package\updating factOrder completion\Sort.Inputs[Sort Input]"
+              name="Data Conversion Output"
+              startId="Package\updating factOrder completion\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\updating factOrder completion.Paths[Derived Column Output]"
+              endId="Package\updating factOrder completion\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\updating factOrder completion\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\updating factOrder completion.Paths[Flat File Source Output]"
+              endId="Package\updating factOrder completion\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\updating factOrder completion\Flat File Source.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\updating factOrder completion.Paths[Merge Join Output]"
+              endId="Package\updating factOrder completion\Derived Column.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\updating factOrder completion\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\updating factOrder completion.Paths[OLE DB Source Output]"
+              endId="Package\updating factOrder completion\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\updating factOrder completion\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\updating factOrder completion.Paths[Sort Output]"
+              endId="Package\updating factOrder completion\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\updating factOrder completion\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\updating factOrder completion.Paths[Sort Output1]"
+              endId="Package\updating factOrder completion\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\updating factOrder completion\Sort 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="221.6,41.6"
+          Id="Package\updating factOrder completion"
+          TopLeft="140.83332563854,113.533332543837" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\updating factOrder completion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\updating factOrder completion\Derived Column"
+          TopLeft="254.999986067415,366.59999745071" />
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\updating factOrder completion\OLE DB Command"
+          TopLeft="247.499986477197,456.733330157267" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\updating factOrder completion\Merge Join"
+          TopLeft="268.333318672247,265.199998155833" />
+        <NodeLayout
+          Size="106.4,41.6"
+          Id="Package\updating factOrder completion\Sort 1"
+          TopLeft="488.199974593521,164.399999168317" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\updating factOrder completion\OLE DB Source"
+          TopLeft="426.666643354629,36.1333333936003" />
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\updating factOrder completion\Sort"
+          TopLeft="78.3333290533887,173.333332127995" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\updating factOrder completion\Data Conversion"
+          TopLeft="257.73332222369,111.533332869278" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\updating factOrder completion\Flat File Source"
+          TopLeft="97.499994672835,32.066666443679" />
+        <EdgeLayout
+          Id="Package\updating factOrder completion.Paths[Sort Output1]"
+          TopLeft="541.399974593521,205.999999168317">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-187.999989254608,59.199998987516"
+              Start="0,0"
+              End="-187.999989254608,51.699998987516">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.0868286682107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.0868286682107"
+                    Point2="0,35.0868286682107"
+                    Point3="-4,35.0868286682107" />
+                  <mssgle:LineSegment
+                    End="-183.999989254608,35.0868286682107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-183.999989254608,35.0868286682107"
+                    Point2="-187.999989254608,35.0868286682107"
+                    Point3="-187.999989254608,39.0868286682107" />
+                  <mssgle:LineSegment
+                    End="-187.999989254608,51.699998987516" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\updating factOrder completion.Paths[Sort Output]"
+          TopLeft="127.133329053389,214.933332127995">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="185.733322952191,50.2666660278375"
+              Start="0,0"
+              End="185.733322952191,42.7666660278375">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.7921947433281" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.7921947433281"
+                    Point2="0,29.7921947433281"
+                    Point3="4,29.7921947433281" />
+                  <mssgle:LineSegment
+                    End="181.733322952191,29.7921947433281" />
+                  <mssgle:CubicBezierSegment
+                    Point1="181.733322952191,29.7921947433281"
+                    Point2="185.733322952191,29.7921947433281"
+                    Point3="185.733322952191,33.7921947433281" />
+                  <mssgle:LineSegment
+                    End="185.733322952191,42.7666660278375" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\updating factOrder completion.Paths[OLE DB Source Output]"
+          TopLeft="502.666643354629,77.7333333936002">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.7333312388923,86.6666657747164"
+              Start="0,0"
+              End="38.7333312388923,79.1666657747164">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.3333328873582" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.3333328873582"
+                    Point2="0,43.3333328873582"
+                    Point3="4,43.3333328873582" />
+                  <mssgle:LineSegment
+                    End="34.7333312388923,43.3333328873582" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.7333312388923,43.3333328873582"
+                    Point2="38.7333312388923,43.3333328873582"
+                    Point3="38.7333312388923,47.3333328873582" />
+                  <mssgle:LineSegment
+                    End="38.7333312388923,79.1666657747164" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\updating factOrder completion.Paths[Merge Join Output]"
+          TopLeft="332.266652369831,306.799998155833">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.7999992948769"
+              Start="0,0"
+              End="0,52.2999992948769">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.2999992948769" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\updating factOrder completion.Paths[Flat File Source Output]"
+          TopLeft="173.099994672835,73.666666443679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="162.633327550855,37.8666664255987"
+              Start="0,0"
+              End="162.633327550855,30.3666664255987">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.9333332127993" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.9333332127993"
+                    Point2="0,18.9333332127993"
+                    Point3="4,18.9333332127993" />
+                  <mssgle:LineSegment
+                    End="158.633327550855,18.9333332127993" />
+                  <mssgle:CubicBezierSegment
+                    Point1="158.633327550855,18.9333332127993"
+                    Point2="162.633327550855,18.9333332127993"
+                    Point3="162.633327550855,22.9333332127993" />
+                  <mssgle:LineSegment
+                    End="162.633327550855,30.3666664255987" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\updating factOrder completion.Paths[Derived Column Output]"
+          TopLeft="331.249986272306,408.19999745071">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.5333327065576"
+              Start="0,0"
+              End="0,41.0333327065576">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.0333327065576" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\updating factOrder completion.Paths[Data Conversion Output]"
+          TopLeft="257.73332222369,132.333332869278">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-81.7999931703014,61.7999992587174"
+              Start="0,0"
+              End="-74.2999931703014,61.7999992587174">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-36.8999965851507,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-36.8999965851507,0"
+                    Point2="-40.8999965851507,0"
+                    Point3="-40.8999965851507,4" />
+                  <mssgle:LineSegment
+                    End="-40.8999965851507,57.7999992587174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-40.8999965851507,57.7999992587174"
+                    Point2="-40.8999965851507,61.7999992587174"
+                    Point3="-44.8999965851507,61.7999992587174" />
+                  <mssgle:LineSegment
+                    End="-74.2999931703014,61.7999992587174" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\updating factOrder completion\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
